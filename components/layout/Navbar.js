@@ -1,5 +1,5 @@
 "use client";
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react"; // أضفنا useEffect
 import { usePathname } from "next/navigation"; 
 import {
   Popover,
@@ -26,7 +26,6 @@ const navigation = {
         { name: "About Us", href: "/about" },
         { name: "Search", href: "/search" },
         { name: "Admin", href: "/admin" },
-        
       ],
     },
     { name: "Blog", href: "/blog" },
@@ -35,23 +34,31 @@ const navigation = {
 
 export default function LoveTravelNavbar() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false); // حالة للتأكد من التحميل في المتصفح
   const pathname = usePathname(); 
-  const isActive = (href) => pathname === href;
+
+  // تفعيل الحالة بعد أول ريندر في المتصفح فقط
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isActive = (href) => (mounted ? pathname === href : false);
+  
   const isSectionActive = (sections) => {
+    if (!mounted) return false;
     return sections?.some(section => pathname === section.href);
   };
 
   return (
     <div className="sticky top-0 z-50 w-full shadow-md">
-     
+      {/* Mobile Menu */}
       <Transition show={open} as={Fragment}>
         <Dialog as="div" className="relative z-100 lg:hidden" onClose={setOpen}>
-        
           <div className="fixed inset-0 z-40 flex">
             <TransitionChild as={Fragment}>
               <DialogPanel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
                 <div className="flex px-4 pb-2 pt-5">
-                  <button type="button" onClick={() => setOpen(false)}>
+                  <button type="button" onClick={() => setOpen(false)} suppressHydrationWarning>
                     <XMarkIcon className="h-6 w-6" />
                   </button>
                 </div>
@@ -112,6 +119,7 @@ export default function LoveTravelNavbar() {
                 {category.sections ? (
                   <Popover className="relative">
                     <PopoverButton 
+                      suppressHydrationWarning // تمنع الخطأ الناتج عن إضافات المتصفح
                       className={`text-[15px] font-bold outline-none hover:text-[#d97d4a] transition-colors ${isSectionActive(category.sections) ? 'text-[#d97d4a]' : 'text-black'}`}
                     >
                       {category.name}
@@ -146,11 +154,14 @@ export default function LoveTravelNavbar() {
           <div className="flex h-full items-center">
             <div className="hidden lg:flex h-full items-center">
               <Image src="/bgnav.png" width={33} height={80} alt="bg" className="h-full object-cover" />
-              <Link href="/search" className="h-full bg-[#D57C48] text-white font-extrabold text-lg px-10 flex items-center justify-center hover:bg-black transition-all">
+              <Link 
+                href="/search" 
+                className={`h-full text-white font-extrabold text-lg px-10 flex items-center justify-center transition-all ${isActive('/search') ? 'bg-[#D57C48]' : 'bg-[#D57C48] hover:bg-[#D57C48]'}`}
+              >
                 Search Travel
               </Link>
             </div>
-            <button onClick={() => setOpen(true)} className="lg:hidden p-4 text-[#1e2a5e]">
+            <button onClick={() => setOpen(true)} className="lg:hidden p-4 text-[#1e2a5e]" suppressHydrationWarning>
               <Bars3Icon className="h-8 w-8" />
             </button>
           </div>
