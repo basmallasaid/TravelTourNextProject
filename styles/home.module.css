@@ -1,0 +1,67 @@
+.divInfo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5%;
+    color: aliceblue;
+    opacity: 0;
+    animation: slideUp 0.8s ease-out forwards;
+    z-index: 10;
+    width: 90%; 
+}
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+}
+
+.title {
+    width: 100%;
+    font-size: 45px; 
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: capitalize;
+}
+
+.header {
+    color: #D57C48;
+}
+
+.description {
+    margin-top: 20px;
+    width: 100%;
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 70px;
+        width: 80%;
+    }
+    .description {
+        font-size: 16px;
+        width: 60%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .divInfo {
+        left: 3%;
+    }
+    .title {
+        font-size: 100px; 
+        width: 65%;
+    }
+    .description {
+        margin-top: 40px;
+        width: 45%;
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,142 @@
+{
+  "packages": [
+    {
+      "id": 1,
+      "slug": "toscany-italy",
+      "title": "Toscany",
+      "location": "Italy",
+      "image": "/package1.jpg",
+      "duration": "5 Days",
+      "description": "Whether you're looking for a romantic tour, Tuscany is the perfect destination for a true Italian experience.",
+      "price": 789,
+      "isSale": false
+    },
+    {
+      "id": 2,
+      "slug": "tokyo-japan",
+      "title": "Tokyo",
+      "location": "Japan",
+      "image": "/package2.jpg",
+      "duration": "1 Week",
+      "description": "Experience the alluring beauty and bustling energy of Tokyo through our immersive tour with a good guide.",
+      "price": 480,
+      "oldPrice": 600,
+      "isSale": true
+    },
+    {
+      "id": 3,
+      "slug": "santa-monica-california",
+      "title": "Santa Monica",
+      "location": "California",
+      "image": "/package3.jpg",
+      "duration": "10 Days",
+      "description": "This iconic landmark is home to an array of thrilling good attractions and stunning fresh ocean views.",
+      "price": 350,
+      "oldPrice": 600,
+      "isSale": true
+    },
+    {
+      "id": 4,
+      "slug": "paris-france",
+      "title": "Paris",
+      "location": "France",
+      "image": "/package4.jpg",
+      "duration": "4 Days",
+      "description": "The city of lights and love. Visit the Eiffel Tower and enjoy the finest French cuisine and art museums.",
+      "price": 950,
+      "isSale": false
+    },
+    {
+      "id": 5,
+      "slug": "bali-indonesia",
+      "title": "Bali",
+      "location": "Indonesia",
+      "image": "/package5.jpg",
+      "duration": "12 Days",
+      "description": "A tropical paradise known for its volcanic mountains, iconic rice paddies, beaches and coral reefs.",
+      "price": 520,
+      "oldPrice": 750,
+      "isSale": true
+    },
+    {
+      "id": 6,
+      "slug": "santorini-greece",
+      "title": "Santorini",
+      "location": "Greece",
+      "image": "/package6.jpg",
+      "duration": "6 Days",
+      "description": "Famous for its stunning sunsets, white-washed buildings, and the breathtaking views of the Aegean Sea.",
+      "price": 840,
+      "isSale": false
+    },
+    {
+      "id": 7,
+      "slug": "dubai-uae",
+      "title": "Dubai",
+      "location": "UAE",
+      "image": "/package7.jpg",
+      "duration": "5 Days",
+      "description": "Experience luxury like never before. From world-class shopping to the tallest building, the Burj Khalifa.",
+      "price": 1200,
+      "oldPrice": 1500,
+      "isSale": true
+    },
+    {
+      "id": 8,
+      "slug": "london-uk",
+      "title": "London",
+      "location": "United Kingdom",
+      "image": "/package08.jpg",
+      "duration": "1 Week",
+      "description": "Explore the history of the British Empire, visit the Big Ben, and enjoy the vibrant culture of London.",
+      "price": 700,
+      "isSale": false
+    },
+    {
+      "id": 9,
+      "slug": "cairo-egypt",
+      "title": "Cairo",
+      "location": "Egypt",
+      "image": "/package9.jpg",
+      "duration": "4 Days",
+      "description": "Journey back in time to the land of Pharaohs. Visit the Great Pyramids of Giza and the Sphinx.",
+      "price": 400,
+      "oldPrice": 550,
+      "isSale": true
+    },
+    {
+      "id": 10,
+      "slug": "maldives-island",
+      "title": "Maldives",
+      "location": "Maldives",
+      "image": "/package10.jpg",
+      "duration": "8 Days",
+      "description": "The ultimate honeymoon destination. Clear blue waters, white sands, and overwater bungalows.",
+      "price": 1800,
+      "isSale": false
+    },
+    {
+      "id": 11,
+      "slug": "new-york-usa",
+      "title": "New York",
+      "location": "USA",
+      "image": "/package_11.jpg",
+      "duration": "5 Days",
+      "description": "The city that never sleeps. Explore Times Square, Central Park, and the Statue of Liberty.",
+      "price": 1100,
+      "isSale": false
+    },
+    {
+      "id": 12,
+      "slug": "barcelona-spain",
+      "title": "Barcelona",
+      "location": "Spain",
+      "image": "/package12.jpg",
+      "duration": "6 Days",
+      "description": "A city of Gaudí’s masterpieces, beautiful beaches, and a football culture that is second to none.",
+      "price": 650,
+      "oldPrice": 800,
+      "isSale": true
+    }
+  ]
+}

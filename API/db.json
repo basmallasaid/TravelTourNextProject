@@ -1,0 +1,30 @@
+{
+  "bookings": [
+    {
+      "customerName": "basamala",
+      "customerEmail": "basmala30311@gmail.com",
+      "tourTitle": "Toscany",
+      "date": "2026-05-10",
+      "adults": 1,
+      "children": 0,
+      "insurance": false,
+      "message": "",
+      "total": 789,
+      "id": "uV-kd4J3eYQ"
+    },
+    {
+      "customerName": "ali",
+      "customerEmail": "ali@gmail.com",
+      "tourTitle": "Dubai",
+      "date": "2026-05-19",
+      "adults": 2,
+      "children": 1,
+      "insurance": false,
+      "message": "",
+      "total": 2700,
+      "id": "BS1XAtCtFMQ"
+    }
+  ],
+  "enquiries": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}
