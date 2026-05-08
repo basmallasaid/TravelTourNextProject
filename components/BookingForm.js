@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import { useState } from "react";
 export default function BookingForm({ tour }) {
   const [formData, setFormData] = useState({
@@ -9,7 +9,7 @@ export default function BookingForm({ tour }) {
   });
   const totalPrice = formData.guests * (tour?.price || 0);
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
   e.preventDefault();
   const bookingData = {
     ...formData,
@@ -18,7 +18,8 @@ export default function BookingForm({ tour }) {
   };
 
   try {
-    const res = await fetch(NEXT_PUBLIC_APIURLBOOKINGS, {
+   
+    const res = await fetch(process.env.NEXT_PUBLIC_APIURLBOOKINGS, { 
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,23 +27,23 @@ export default function BookingForm({ tour }) {
       body: JSON.stringify(bookingData),
     });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    console.log(data);
+      console.log(data);
 
-    alert("Booking Added Successfully");
+      alert("Booking Added Successfully");
 
-    setFormData({
-      fullName: "",
-      email: "",
-      date: "",
-      guests: 1,
-    });
+      setFormData({
+        fullName: "",
+        email: "",
+        date: "",
+        guests: 1,
+      });
 
-  } catch (error) {
-    console.log(error);
-  }
-};
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-2xl border border-gray-100 max-w-4xl mx-auto">
@@ -69,7 +70,7 @@ export default function BookingForm({ tour }) {
             <input
               required
               type="email"
-              value={formData.email}  
+              value={formData.email}
               placeholder="example@mail.com"
               className="p-5 bg-gray-50 rounded-2xl outline-none border border-transparent focus:border-[#d97d4a] focus:bg-white transition-all text-gray-700"
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -103,13 +104,13 @@ export default function BookingForm({ tour }) {
 
         <div className="mt-12 bg-[#1e2a5e] p-8 md:p-10 rounded-[30px] text-white flex flex-col md:flex-row justify-between items-center gap-6 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16"></div>
-          
+
           <div className="text-center md:text-left">
             <p className="text-xs uppercase tracking-[0.2em] opacity-60 mb-2">Total Payable Amount</p>
             <p className="text-5xl font-black text-[#d97d4a]">${totalPrice}</p>
           </div>
-          
-          <button 
+
+          <button
             type="submit"
             className="w-full md:w-auto bg-[#d97d4a] hover:bg-[#c46a3b] text-white px-12 py-5 rounded-2xl font-black text-lg transition-all active:scale-95 shadow-lg shadow-orange-900/20"
           >

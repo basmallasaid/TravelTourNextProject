@@ -1,25 +1,15 @@
 import Link from "next/link";
-import {
-  MapPinIcon,
-  ClockIcon,
-  ChartBarIcon,
-  UsersIcon,
-} from "@heroicons/react/24/outline";
+import { MapPinIcon, ClockIcon, ChartBarIcon, UsersIcon } from "@heroicons/react/24/outline";
 import DestinationContent from '@/components/DestinationContent'
 import Image from "next/image";
+import packagesData from "@/data/packages.json"; 
 async function getSingleData(slug) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APIURL}?slug=${slug}`, {
-    next: { revalidate: 60 },
-  });
-  if (!res.ok) return null;
-  const data = await res.json();
-  return data.length > 0 ? data[0] : null;
+  const data = packagesData.packages.find((pkg) => pkg.slug === slug);
+  return data || null;
 }
+
 export async function generateStaticParams() {
-  const res = await fetch(process.env.NEXT_PUBLIC_APIURL);
-  const data = await res.json();
-  const packagesArray = Array.isArray(data) ? data : data.packages;
-  return packagesArray.map((item) => ({
+  return packagesData.packages.map((item) => ({
     slug: item.slug,
   }));
 }
@@ -31,9 +21,7 @@ const DestinationDetails = async ({ params }) => {
   if (!data) {
     return (
       <div className="p-20 text-center">
-        <h1 className="text-2xl font-bold text-red-500">
-          Destination not found
-        </h1>
+        <h1 className="text-2xl font-bold text-red-500">Destination not found</h1>
       </div>
     );
   }
