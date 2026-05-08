@@ -18,7 +18,7 @@ export async function DELETE(request, { params }) {
   const db = getDb();
   db.bookings = db.bookings.filter((b) => b.id !== id);
   saveDb(db);
-  return NextResponse.json({ message: "Deleted" });
+  return NextResponse.json({ message: "Deleted Successfully" });
 }
 
 export async function PUT(request, { params }) {

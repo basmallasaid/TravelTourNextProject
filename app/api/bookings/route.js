@@ -14,16 +14,29 @@ function saveDb(data) {
 }
 
 export async function GET() {
-  const db = getDb();
-  return NextResponse.json(db.bookings);
+  try {
+    const db = getDb();
+    return NextResponse.json(db.bookings);
+  } catch (e) {
+    return NextResponse.json([]);
+  }
 }
 
 export async function POST(request) {
-  const newBooking = await request.json();
-  const db = getDb();
-  const bookingWithId = { ...newBooking, id: Math.random().toString(36).substr(2, 9) };
-  db.bookings.push(bookingWithId);
-  saveDb(db);
-  
-  return NextResponse.json(bookingWithId, { status: 201 });
+  try {
+    const newBooking = await request.json();
+    const db = getDb();
+    
+    const bookingWithId = { 
+      ...newBooking, 
+      id: Math.random().toString(36).substr(2, 9) 
+    };
+    
+    db.bookings.push(bookingWithId);
+    saveDb(db);
+    
+    return NextResponse.json(bookingWithId, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ message: "Error saving data" }, { status: 500 });
+  }
 }
