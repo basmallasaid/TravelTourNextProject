@@ -44,7 +44,6 @@ export const updateBooking = async (id, updatedData) => {
 };
 // CREATE ENQUIRY
 export const createEnquiry = async (enquiryData) => {
-  // سنفترض أن هناك endpoint للاستفسارات في db.json يسمى enquiries
   const ENQUIRY_URL = API_URL.replace('bookings', 'enquiries'); 
   const res = await fetch(ENQUIRY_URL, {
     method: "POST",

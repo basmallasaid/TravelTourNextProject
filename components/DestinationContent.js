@@ -10,7 +10,7 @@ import {
   CheckBadgeIcon
 } from "@heroicons/react/24/outline";
 import { createBooking } from "../API/bookingApi";
-import Swal from "sweetalert2"; // استيراد SweetAlert
+import Swal from "sweetalert2"; 
 
 export default function DestinationContent({ data }) {
   const [fullName, setFullName] = useState("");
