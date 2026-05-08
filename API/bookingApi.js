@@ -1,57 +1,35 @@
-const API_URL = process.env.NEXT_PUBLIC_APIURLBOOKINGS;
+const API_URL = "/api/bookings"; 
 
-
-// GET ALL BOOKINGS
 export const getBookings = async () => {
-  const res = await fetch(API_URL);
-  return res.json();
+  try {
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error("Failed to fetch");
+    return res.json();
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };
 
-
-// CREATE BOOKING
 export const createBooking = async (bookingData) => {
   const res = await fetch(API_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(bookingData),
   });
-
+  if (!res.ok) throw new Error("Failed to create");
   return res.json();
 };
 
-
-// DELETE BOOKING
 export const deleteBooking = async (id) => {
-  await fetch(`${API_URL}/${id}`, {
-    method: "DELETE",
-  });
+  await fetch(`${API_URL}/${id}`, { method: "DELETE" });
 };
 
-
-// UPDATE BOOKING
 export const updateBooking = async (id, updatedData) => {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(updatedData),
   });
-
-  return res.json();
-};
-// CREATE ENQUIRY
-export const createEnquiry = async (enquiryData) => {
-  const ENQUIRY_URL = API_URL.replace('bookings', 'enquiries'); 
-  const res = await fetch(ENQUIRY_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(enquiryData),
-  });
-
   return res.json();
 };
