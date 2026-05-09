@@ -1,36 +1,29 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 
-const filePath = path.join(process.cwd(), "data", "db.json");
-
-function getDb() {
-  const data = fs.readFileSync(filePath, "utf8");
-  return JSON.parse(data);
-}
-
-function saveDb(data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-}
+const MOCK_API = process.env.NEXT_PUBLIC_APIURLBOOKINGS;
 
 export async function DELETE(request, { params }) {
   const { id } = params;
-  const db = getDb();
-  db.bookings = db.bookings.filter((b) => b.id !== id);
-  saveDb(db);
-  return NextResponse.json({ message: "Deleted Successfully" });
+  try {
+    await fetch(`${MOCK_API}/${id}`, { method: "DELETE" });
+    return NextResponse.json({ message: "Deleted from MockAPI" });
+  } catch (error) {
+    return NextResponse.json({ message: "Delete failed" }, { status: 500 });
+  }
 }
 
 export async function PUT(request, { params }) {
   const { id } = params;
-  const updatedData = await request.json();
-  const db = getDb();
-  const index = db.bookings.findIndex((b) => b.id === id);
-  
-  if (index !== -1) {
-    db.bookings[index] = { ...db.bookings[index], ...updatedData };
-    saveDb(db);
-    return NextResponse.json(db.bookings[index]);
+  try {
+    const updatedData = await request.json();
+    const res = await fetch(`${MOCK_API}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedData),
+    });
+    const data = await res.json();
+    return NextResponse.json(data);
+  } catch (error) {
+    return NextResponse.json({ message: "Update failed" }, { status: 500 });
   }
-  return NextResponse.json({ message: "Not Found" }, { status: 404 });
 }

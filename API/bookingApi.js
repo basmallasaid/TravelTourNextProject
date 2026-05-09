@@ -1,5 +1,4 @@
 const API_URL = "/api/bookings"; 
-
 export const getBookings = async () => {
   try {
     const res = await fetch(API_URL);
